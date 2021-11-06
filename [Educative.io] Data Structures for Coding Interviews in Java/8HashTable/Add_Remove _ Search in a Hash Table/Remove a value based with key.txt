@@ -1,0 +1,37 @@
+//Remove a value based with key
+public int delete(String key)
+{
+	//Find index 
+	int b_Index = getIndex(key);
+
+	// Get head of the chain for that index
+	HashEntry head = bucket.get(b_Index);
+
+	//Find the key in slots
+	HashEntry prev = null;
+	while (head != null)
+	{
+		//If key exists
+		if (head.key.equals(key))
+			break;
+
+		// Else keep moving in chain
+		prev = head;
+		head = head.next;
+	}
+
+	// If key does not exist
+	if (head == null)
+		return null;
+
+	// Decrease the size by one
+	size--;
+
+	// Remove key
+	if (prev != null)
+		prev.next = head.next;
+	else
+		bucket.set(b_Index, head.next);
+
+	return head.value;
+}

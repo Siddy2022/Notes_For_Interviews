@@ -1,0 +1,18 @@
+// Return a value for a given key
+public int getValue(String key)
+{
+	// Find the head of chain 
+	int b_Index = getIndex(key);
+	HashEntry head = bucket.get(b_Index);
+
+	// Search key in the slots
+	while (head != null)
+	{
+		if (head.key.equals(key))
+			return head.value;
+		head = head.next;
+	}
+
+	// If key not found
+	return null;
+}
